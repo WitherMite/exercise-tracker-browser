@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 help.md
+design-references
+
 
 # Editor directories and files
 .vscode/*
