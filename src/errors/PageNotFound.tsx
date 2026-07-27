@@ -1,4 +1,4 @@
-import PageContainer from "../components/page-container/PageContainer";
+import PageContainer from "../App";
 
 export default function PageNotFound() {
     return (

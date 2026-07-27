@@ -1,9 +1,10 @@
-import PageContainer from "../../components/page-container/PageContainer";
-
 export default function Dashboard() {
     return (
-        <PageContainer>
-            <div>dashboard</div>
-        </PageContainer>
+        <>
+            <header>
+                <h1>Welcome, Frank</h1>
+            </header>
+            <main>dashboard</main>
+        </>
     );
 }

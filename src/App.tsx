@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
-import Navbar from "../navbar/Navbar";
+import Navbar from "./components/navbar/Navbar";
+import "./App.css";
 
 interface Props {
     children: ReactNode;
 }
 
-export default function PageContainer({ children }: Props) {
+export default function App({ children }: Props) {
     return (
         <>
             <Navbar />
