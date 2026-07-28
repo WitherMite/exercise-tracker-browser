@@ -1,12 +1,29 @@
+.navTrack {
+    padding: 1.5em;
+}
+
 .navTrack,
 .navBar {
+    background-color: var(--nav-color);
     display: flex;
     flex-direction: column;
     list-style: none;
     gap: 1em;
 }
 
+.navBar {
+    position: sticky;
+    top: 1.5em;
+}
+
 @media (max-width: 600px) {
+    .navTrack {
+        position: fixed;
+        bottom: 0;
+        width: 100svw;
+    }
+
+    .navTrack,
     .navBar {
         flex-direction: row;
     }
