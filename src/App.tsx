@@ -10,7 +10,7 @@ export default function App({ children }: Props) {
     return (
         <>
             <Navbar />
-            {children}
+            <div className="view-box">{children}</div>
         </>
     );
 }
