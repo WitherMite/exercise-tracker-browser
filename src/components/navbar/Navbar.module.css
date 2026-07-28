@@ -16,11 +16,13 @@
     top: 1.5em;
 }
 
-@media (max-width: 600px) {
+/* sticks nav to bottom horizontally on mobile */
+@media (--mobile) {
     .navTrack {
         position: fixed;
         bottom: 0;
         width: 100svw;
+        min-width: min-content;
     }
 
     .navTrack,

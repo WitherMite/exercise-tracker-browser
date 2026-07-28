@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
+/* 
+unneeded, but would allow deleting postcss plugins when @custom-media is widely supported 
+@import "./breakpoints.css"; 
+*/
+
+/* css reset */
+
 *,
 *::before,
 *::after {
@@ -8,17 +15,18 @@
     box-sizing: border-box;
 }
 
+/* global css variables */
+
 :root {
-    /* Global css variables */
     --font-color-primary: #eeeeee;
     --font-color-secondary: #cccccc;
     --font-color-muted: #555555;
     --font-header: "Barlow Semi Condensed", sans-serif;
     --font-body: "DM Sans", sans-serif;
     --font-mono: "DM Mono", monospace;
-    /* other colors from ai gen design, need better names */
     --view-background: #0a0a0a;
     --nav-color: #080808;
+    /* other colors from ai gen design, need better names */
     --card: #0e1410;
     --card-inner: #0c120d;
     --sunken: #080a08;
@@ -26,4 +34,25 @@
     --border-subtle: #101810;
     --green: #4ade80;
     --green-dim: #22c55e;
+}
+
+/* global default styling */
+
+body {
+    background-color: var(--view-background);
+    font-family: var(--font-body);
+    color: var(--font-color-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-header);
+}
+
+code {
+    font-family: var(--font-mono);
 }
