@@ -1,7 +1,3 @@
-.navTrack {
-    padding: 1.5em;
-}
-
 .navTrack,
 .navBar {
     background-color: var(--nav-color);
@@ -13,7 +9,12 @@
 
 .navBar {
     position: sticky;
-    top: 1.5em;
+    top: 0;
+    padding: 1.5em;
+}
+
+.navLink:global(.active) {
+    color: var(--green);
 }
 
 /* sticks nav to bottom horizontally on mobile */
