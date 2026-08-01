@@ -1,0 +1,12 @@
+.card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    flex: 1;
+    display: flex;
+    padding: 1rem;
+}
+
+.card > * {
+    margin: auto;
+}

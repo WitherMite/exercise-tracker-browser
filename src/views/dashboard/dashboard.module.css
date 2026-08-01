@@ -1,0 +1,25 @@
+.dashboardHeader {
+    margin-bottom: 1rem;
+}
+
+.displayname {
+    color: var(--green);
+}
+
+.monoText {
+    font-family: var(--font-mono);
+    color: var(--font-color-muted);
+}
+
+.overview {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
