@@ -1,0 +1,15 @@
+.searchHeader,
+.exerciseCount {
+    margin-bottom: 1rem;
+}
+
+.exerciseCount {
+    font-family: var(--font-mono);
+    color: var(--font-color-muted);
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}

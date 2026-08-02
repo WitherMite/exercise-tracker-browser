@@ -10,6 +10,10 @@ const links = [
         path: "/home",
         childNode: "Dashboard",
     },
+    {
+        path: "/exercises",
+        childNode: "Exercises",
+    },
 ] as const;
 
 export default function Navbar() {

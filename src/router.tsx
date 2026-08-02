@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router";
-import Landing from "./views/landing/Landing";
 import PageNotFound from "./errors/PageNotFound";
 import Dashboard from "./views/dashboard/Dashboard";
+import Exercises from "./views/exercises/Exercises";
+import Landing from "./views/landing/Landing";
 import App from "./App";
 
 const router = createBrowserRouter([
@@ -19,6 +20,14 @@ const router = createBrowserRouter([
         element: (
             <App>
                 <Dashboard />
+            </App>
+        ),
+    },
+    {
+        path: "/exercises",
+        element: (
+            <App>
+                <Exercises />
             </App>
         ),
     },
