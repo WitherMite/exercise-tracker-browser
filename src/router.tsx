@@ -13,7 +13,11 @@ const router = createBrowserRouter([
                 <Landing />
             </App>
         ),
-        errorElement: <PageNotFound />,
+        errorElement: (
+            <App>
+                <PageNotFound />
+            </App>
+        ),
     },
     {
         path: "/home",

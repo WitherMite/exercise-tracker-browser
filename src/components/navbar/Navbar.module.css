@@ -1,29 +1,47 @@
+.navTrack {
+    border-right: 1px solid var(--border);
+}
+
 .navTrack,
 .navBar {
     background-color: var(--nav-color);
     display: flex;
     flex-direction: column;
     list-style: none;
-    gap: 1em;
+    gap: 1rem;
+}
+
+.logBtn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
 }
 
 .navBar {
     position: sticky;
     top: 0;
-    padding: 1.5em;
+    padding: 1.5rem;
 }
 
 .navLink:global(.active) {
     color: var(--green);
 }
 
-/* sticks nav to bottom horizontally on mobile */
+/* sticks nav to bottom horizontally on mobile and has log button sit above it on the right */
 @media (--mobile) {
     .navTrack {
         position: fixed;
         bottom: 0;
         width: 100svw;
         min-width: 100%;
+        border-right: none;
+        border-top: 1px solid var(--border);
+    }
+
+    .logBtn {
+        top: auto;
+        bottom: calc(100% + 1.5rem);
+        right: 1.5rem;
     }
 
     .navTrack,

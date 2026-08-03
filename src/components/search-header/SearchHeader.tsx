@@ -18,7 +18,7 @@ export default function SearchHeader({ className, label, categories }: Props) {
                 <input
                     type="search"
                     name="q"
-                    id="exercise_search"
+                    id="header-search"
                     className={style.searchbar}
                 />
                 <div>

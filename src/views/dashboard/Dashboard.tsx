@@ -7,10 +7,13 @@ function DashboardHeader() {
         <header className={style.dashboardHeader}>
             <div className={style.monoText}>{"<today's date>"}</div>
             <h1>
-                {"" /* todo: generate greeting based on local time */}
-                Good Morning,
+                {
+                    "GOOD MORNING," /* todo: generate greeting based on local time */
+                }
                 <br></br>
-                <span className={style.displayname}>{data.displayname}.</span>
+                <span className={style.displayname}>
+                    {data.displayname.toUpperCase()}.
+                </span>
             </h1>
         </header>
     );

@@ -13,7 +13,7 @@ export default function Exercises() {
     return (
         <>
             <SearchHeader
-                label="Exercise Library"
+                label="EXERCISE LIBRARY"
                 categories={categories}
                 className={style.searchHeader}
             />
