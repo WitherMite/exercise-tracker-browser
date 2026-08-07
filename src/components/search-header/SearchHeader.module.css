@@ -1,0 +1,17 @@
+.headerLabel,
+.searchTrack {
+    margin-bottom: 1rem;
+}
+
+.categoryList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.categoryBtn {
+    background-color: var(--view-background);
+    font-family: var(--font-mono);
+    color: var(--font-color-muted);
+    border-radius: 2rem;
+}

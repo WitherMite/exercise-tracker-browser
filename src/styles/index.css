@@ -21,6 +21,7 @@ unneeded, but would allow deleting postcss plugins when @custom-media is widely 
     --font-color-primary: #eeeeee;
     --font-color-secondary: #cccccc;
     --font-color-muted: #555555;
+    --font-color-inverted: #0a0a0a;
     --font-header: "Barlow Semi Condensed", sans-serif;
     --font-body: "DM Sans", sans-serif;
     --font-mono: "DM Mono", monospace;
@@ -55,4 +56,22 @@ h6 {
 
 code {
     font-family: var(--font-mono);
+}
+
+button,
+input {
+    font: inherit;
+    color: inherit;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5em 0.75em;
+}
+
+button {
+    cursor: pointer;
+}
+
+input:focus {
+    outline: 2px solid var(--green);
 }

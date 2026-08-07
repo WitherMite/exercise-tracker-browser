@@ -19,7 +19,7 @@ function DashboardHeader() {
     );
 }
 
-// todo: generate cards from data
+// todo: generate cards from data (will need to add a user dashboard endpoint to api and decide what to show here)
 export default function Dashboard() {
     return (
         <>

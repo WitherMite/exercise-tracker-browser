@@ -13,15 +13,17 @@ interface Props {
 export default function SearchHeader({ className, label, categories }: Props) {
     return (
         <header className={className}>
-            <h1>{label}</h1>
+            <h1 className={style.headerLabel}>{label}</h1>
             <form action="">
-                <input
-                    type="search"
-                    name="q"
-                    id="header-search"
-                    className={style.searchbar}
-                />
-                <div>
+                <div className={style.searchTrack}>
+                    <input
+                        type="search"
+                        name="q"
+                        className={style.searchbar}
+                        placeholder="Search Exercises..."
+                    />
+                </div>
+                <div className={style.categoryList}>
                     {categories.map((category) => (
                         <button
                             type="button"
