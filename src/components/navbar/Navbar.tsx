@@ -12,6 +12,10 @@ const links = [
         childNode: "Dashboard",
     },
     {
+        path: "/profile",
+        childNode: "Profile",
+    },
+    {
         path: "/exercises",
         childNode: "Exercises",
     },

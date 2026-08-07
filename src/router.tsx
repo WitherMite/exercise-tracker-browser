@@ -4,6 +4,7 @@ import Dashboard from "./views/dashboard/Dashboard";
 import Exercises from "./views/exercises/Exercises";
 import Landing from "./views/landing/Landing";
 import App from "./App";
+import Profile from "./views/profile/Profile";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,14 @@ const router = createBrowserRouter([
         element: (
             <App>
                 <Dashboard />
+            </App>
+        ),
+    },
+    {
+        path: "/profile",
+        element: (
+            <App>
+                <Profile />
             </App>
         ),
     },

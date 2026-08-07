@@ -1,0 +1,17 @@
+.profileCard,
+.workoutHeader,
+.workoutList {
+    margin-bottom: 1rem;
+}
+
+.profileCard {
+    max-width: max-content;
+}
+
+.workoutList {
+    max-width: 800px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
