@@ -34,8 +34,12 @@ export default function WorkoutLogForm({ btnClass }: Props) {
                         x
                     </button>
                 </div>
-                <form action=""></form>
+                <WorkoutForm />
             </dialog>
         </>
     );
+}
+
+function WorkoutForm() {
+    return <form action="">{"form here"}</form>;
 }

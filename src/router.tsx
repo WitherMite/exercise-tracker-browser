@@ -9,40 +9,30 @@ import Profile from "./views/profile/Profile";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: (
-            <App>
-                <Landing />
-            </App>
-        ),
+        element: <App />,
         errorElement: (
             <App>
                 <PageNotFound />
             </App>
         ),
-    },
-    {
-        path: "/home",
-        element: (
-            <App>
-                <Dashboard />
-            </App>
-        ),
-    },
-    {
-        path: "/profile",
-        element: (
-            <App>
-                <Profile />
-            </App>
-        ),
-    },
-    {
-        path: "/exercises",
-        element: (
-            <App>
-                <Exercises />
-            </App>
-        ),
+        children: [
+            {
+                index: true,
+                element: <Landing />,
+            },
+            {
+                path: "/home",
+                element: <Dashboard />,
+            },
+            {
+                path: "/profile",
+                element: <Profile />,
+            },
+            {
+                path: "/exercises",
+                element: <Exercises />,
+            },
+        ],
     },
 ]);
 
