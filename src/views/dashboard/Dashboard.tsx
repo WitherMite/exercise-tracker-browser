@@ -1,8 +1,9 @@
 import Card from "../../components/card/Card";
-import data from "./DashboardData";
 import style from "./Dashboard.module.css";
+import { useLoaderData } from "react-router";
 
 function DashboardHeader() {
+    const { user } = useLoaderData();
     return (
         <header className={style.dashboardHeader}>
             <div className={style.monoText}>{"<today's date>"}</div>
@@ -12,7 +13,7 @@ function DashboardHeader() {
                 }
                 <br></br>
                 <span className={style.displayname}>
-                    {data.displayname.toUpperCase()}.
+                    {user.displayname.toUpperCase()}
                 </span>
             </h1>
         </header>

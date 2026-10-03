@@ -5,6 +5,7 @@ import Exercises from "./views/exercises/Exercises";
 import Landing from "./views/landing/Landing";
 import App from "./App";
 import Profile from "./views/profile/Profile";
+import getUserData from "./api/getUserData";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,9 @@ const router = createBrowserRouter([
             {
                 path: "/home",
                 element: <Dashboard />,
+                loader: async () => {
+                    return { user: await getUserData() };
+                },
             },
             {
                 path: "/profile",
