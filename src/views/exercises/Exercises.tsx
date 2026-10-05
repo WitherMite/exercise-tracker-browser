@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Card from "../../components/card/Card";
-import SearchHeader from "../../components/search-header/SearchHeader";
+import SearchHeader from "../../components/searchHeader/SearchHeader";
 import style from "./Exercises.module.css";
 
 const categories = [

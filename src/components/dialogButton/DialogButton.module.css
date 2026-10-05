@@ -6,11 +6,3 @@
     border: 1px solid var(--border);
     border-radius: 12px;
 }
-
-.modalHeader {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-}

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router";
 import style from "./Navbar.module.css";
-import WorkoutLogForm from "../workout-log-form/WorkoutLogForm";
+import DialogButton from "../dialogButton/DialogButton";
+import LogWorkoutForm from "../logWorkoutForm/LogWorkoutForm";
 
 const links = [
     {
@@ -36,7 +37,9 @@ export default function Navbar() {
     return (
         <nav className={style.navTrack}>
             <ul className={style.navBar}>{linkElements}</ul>
-            <WorkoutLogForm btnClass={style.logBtn} />
+            <DialogButton btnClass={style.logBtn}>
+                <LogWorkoutForm />
+            </DialogButton>
         </nav>
     );
 }
