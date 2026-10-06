@@ -2,6 +2,7 @@ import { NavLink } from "react-router";
 import style from "./Navbar.module.css";
 import DialogButton from "../dialogButton/DialogButton";
 import LogWorkoutForm from "../logWorkoutForm/LogWorkoutForm";
+import ConfirmLogout from "../confirmLogout/confirmLogout";
 
 const links = [
     {
@@ -37,7 +38,10 @@ export default function Navbar() {
     return (
         <nav className={style.navTrack}>
             <ul className={style.navBar}>{linkElements}</ul>
-            <DialogButton btnClass={style.logBtn}>
+            <DialogButton btnClass={style.logoutBtn} content="Logout">
+                <ConfirmLogout />
+            </DialogButton>
+            <DialogButton btnClass={style.logBtn} content="+ Log">
                 <LogWorkoutForm />
             </DialogButton>
         </nav>

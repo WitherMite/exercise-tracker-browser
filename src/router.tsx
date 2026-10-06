@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router";
+import App from "./App";
 import PageNotFound from "./errors/PageNotFound";
 import Dashboard from "./views/dashboard/Dashboard";
 import Exercises from "./views/exercises/Exercises";
 import Landing from "./views/landing/Landing";
-import App from "./App";
 import Profile from "./views/profile/Profile";
-import getUserData from "./api/getUserData";
 import Login from "./views/login/Login";
+import getUserData from "./api/getUserData";
 import loginUser from "./api/loginUser";
 
 // might extract specific route objects to the relevant views folder, and just import those here?

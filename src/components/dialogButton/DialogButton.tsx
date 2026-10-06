@@ -4,10 +4,11 @@ import { CloseContext } from "./CloseContext";
 
 interface Props {
     btnClass: string;
+    content: ReactNode;
     children?: ReactNode;
 }
 
-export default function WorkoutLogForm({ btnClass, children }: Props) {
+export default function DialogButton({ btnClass, content, children }: Props) {
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     const open = () => {
@@ -23,7 +24,7 @@ export default function WorkoutLogForm({ btnClass, children }: Props) {
     return (
         <>
             <button className={`${btnClass}`} onClick={open}>
-                + Log
+                {content}
             </button>
             <dialog ref={dialogRef} closedby="any" className={style.modal}>
                 <CloseContext value={close}>{children}</CloseContext>
