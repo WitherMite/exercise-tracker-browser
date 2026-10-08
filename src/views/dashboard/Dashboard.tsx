@@ -13,7 +13,7 @@ function DashboardHeader() {
                 }
                 <br></br>
                 <span className={style.displayname}>
-                    {user.displayname.toUpperCase()}
+                    {user.displayname?.toUpperCase() ?? ""}
                 </span>
             </h1>
         </header>

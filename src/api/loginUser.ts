@@ -4,7 +4,6 @@ interface Credentials {
 }
 
 export default async function loginUser(credentials: Credentials) {
-    console.log("logging in...");
     const url = import.meta.env.VITE_API_URL + "auth";
     const response = await fetch(url, {
         method: "POST",

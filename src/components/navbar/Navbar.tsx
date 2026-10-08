@@ -1,8 +1,7 @@
 import { NavLink } from "react-router";
 import style from "./Navbar.module.css";
-import DialogButton from "../dialogButton/DialogButton";
-import LogWorkoutForm from "../logWorkoutForm/LogWorkoutForm";
-import ConfirmLogout from "../confirmLogout/confirmLogout";
+import { useContext } from "react";
+import { AppContext } from "../../AppContext";
 
 const links = [
     {
@@ -35,15 +34,33 @@ export default function Navbar() {
         ),
     );
 
+    const context = useContext(AppContext);
+
     return (
         <nav className={style.navTrack}>
             <ul className={style.navBar}>{linkElements}</ul>
-            <DialogButton btnClass={style.logoutBtn} content="Logout">
-                <ConfirmLogout />
-            </DialogButton>
-            <DialogButton btnClass={style.logBtn} content="+ Log">
-                <LogWorkoutForm />
-            </DialogButton>
+            {context.isLoggedIn ? (
+                <>
+                    <NavLink className={style.logoutBtn} to="/logout">
+                        Logout
+                    </NavLink>
+                    <NavLink
+                        className={style.logExerciseBtn}
+                        to="/log-exercise"
+                    >
+                        + Log
+                    </NavLink>
+                </>
+            ) : (
+                <>
+                    <NavLink className={style.loginBtn} to="/login">
+                        Log in
+                    </NavLink>
+                    <NavLink className={style.registerBtn} to="/register">
+                        Create Account
+                    </NavLink>
+                </>
+            )}
         </nav>
     );
 }
