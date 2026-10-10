@@ -1,7 +1,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import style from "./GlobalDialog.module.css";
 import { CloseContext } from "./CloseContext";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 interface Props {
     children: ReactNode;
@@ -10,11 +10,12 @@ interface Props {
 export default function GlobalDialog({ children }: Props) {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const navigate = useNavigate();
+    const location = useLocation();
 
+    // open property on dialog doesnt open as modal, so we do this
     useEffect(() => {
-        const dialog = dialogRef.current;
-        if (dialog) {
-            dialog.showModal();
+        if (dialogRef.current) {
+            dialogRef.current.showModal();
         }
     }, []);
 
@@ -24,7 +25,12 @@ export default function GlobalDialog({ children }: Props) {
     };
 
     const handleClose = () => {
-        navigate(-1);
+        // goes to previous page if there was one, otherwise to root if tab was opened direct from link
+        if (location.key !== "default") {
+            navigate(-1);
+        } else {
+            navigate("/");
+        }
     };
 
     return (
