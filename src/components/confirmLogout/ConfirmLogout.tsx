@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CloseContext } from "../globalDialog/CloseContext";
+import { CloseContext } from "../globalModal/CloseContext";
 import logoutUser from "../../api/logoutUser";
 
 export default function ConfirmLogout() {

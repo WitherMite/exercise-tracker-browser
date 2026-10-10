@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ReactNode } from "react";
-import style from "./GlobalDialog.module.css";
+import style from "./GlobalModal.module.css";
 import { CloseContext } from "./CloseContext";
 import { useLocation, useNavigate } from "react-router";
 
@@ -7,7 +7,7 @@ interface Props {
     children: ReactNode;
 }
 
-export default function GlobalDialog({ children }: Props) {
+export default function GlobalModal({ children }: Props) {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const navigate = useNavigate();
     const location = useLocation();

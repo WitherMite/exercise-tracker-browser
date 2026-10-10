@@ -1,11 +1,11 @@
 import { Form, useNavigation } from "react-router";
-import GlobalDialog from "../../components/globalDialog/GlobalDialog";
+import GlobalModal from "../../components/globalModal/GlobalModal";
 
 export default function Register() {
     const navigation = useNavigation();
 
     return (
-        <GlobalDialog>
+        <GlobalModal>
             <Form action="/login" method="post">
                 <div className="form-field">
                     <label htmlFor="username">Username:</label>
@@ -29,6 +29,6 @@ export default function Register() {
                         : "Create Account"}
                 </button>
             </Form>
-        </GlobalDialog>
+        </GlobalModal>
     );
 }

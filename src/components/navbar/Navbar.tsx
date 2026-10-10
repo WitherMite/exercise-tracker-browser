@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import style from "./Navbar.module.css";
 import { useContext } from "react";
 import { AppContext } from "../../AppContext";
@@ -35,7 +35,9 @@ export default function Navbar() {
     );
 
     const context = useContext(AppContext);
+    const location = useLocation();
 
+    // try extracting out global modals so they can be used as both route destinations and basic dialog elements attached to a button
     return (
         <nav className={style.navTrack}>
             <ul className={style.navBar}>{linkElements}</ul>
@@ -53,7 +55,11 @@ export default function Navbar() {
                 </>
             ) : (
                 <>
-                    <NavLink className={style.loginBtn} to="/login">
+                    <NavLink
+                        className={style.loginBtn}
+                        to={location.pathname + "?modal=login"}
+                        mask="/login"
+                    >
                         Log in
                     </NavLink>
                     <NavLink className={style.registerBtn} to="/register">

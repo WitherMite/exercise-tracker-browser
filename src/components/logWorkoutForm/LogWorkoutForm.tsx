@@ -1,4 +1,4 @@
-import { CloseContext } from "../globalDialog/CloseContext";
+import { CloseContext } from "../globalModal/CloseContext";
 import style from "./LogWorkoutForm.module.css";
 import { useContext } from "react";
 

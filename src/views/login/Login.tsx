@@ -1,12 +1,12 @@
 import { Form, useNavigation } from "react-router";
-import GlobalDialog from "../../components/globalDialog/GlobalDialog";
+import GlobalModal from "../../components/globalModal/GlobalModal";
 
 export default function Login() {
     const navigation = useNavigation();
     const username = localStorage.getItem("username");
 
     return (
-        <GlobalDialog>
+        <GlobalModal>
             <Form action="/login" method="post">
                 <div className="form-field">
                     <label htmlFor="username">Username:</label>
@@ -27,6 +27,6 @@ export default function Login() {
                         : "Login"}
                 </button>
             </Form>
-        </GlobalDialog>
+        </GlobalModal>
     );
 }

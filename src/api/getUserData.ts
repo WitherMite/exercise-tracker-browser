@@ -4,7 +4,7 @@ export default async function getUserData(): Promise<{ displayname: string }> {
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("jwt");
     if (!username || !token) {
-        throw new Error(`Error fetching user, not logged in`);
+        throw redirect("/login");
     }
 
     const url = import.meta.env.VITE_API_URL + `users/${username}`;
