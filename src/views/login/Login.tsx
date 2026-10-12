@@ -1,12 +1,18 @@
 import { Form, useNavigation } from "react-router";
-import GlobalModal from "../../components/globalModal/GlobalModal";
+import GlobalModal, {
+    type ModalButton,
+} from "../../components/globalModal/GlobalModal";
 
-export default function Login() {
+interface Props {
+    button?: ModalButton;
+}
+
+export default function Login({ button }: Props) {
     const navigation = useNavigation();
     const username = localStorage.getItem("username");
 
     return (
-        <GlobalModal>
+        <GlobalModal button={button}>
             <Form action="/login" method="post">
                 <div className="form-field">
                     <label htmlFor="username">Username:</label>

@@ -3,7 +3,8 @@
 }
 
 .navTrack,
-.navBar {
+.navBar,
+.authControls {
     background-color: var(--nav-color);
     display: flex;
     flex-direction: column;
@@ -11,22 +12,31 @@
     gap: 1rem;
 }
 
-.logExerciseBtn {
+.navBar,
+.authControls {
+    position: sticky;
+    padding: 1.5rem;
+}
+
+.navBar {
+    top: 0;
+}
+
+.authControls {
+    margin-top: auto;
+    bottom: 0;
+}
+
+.navLink:global(.active) {
+    color: var(--green);
+}
+
+.logWorkoutBtn {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
     background-color: var(--green);
     color: var(--font-color-inverted);
-}
-
-.navBar {
-    position: sticky;
-    top: 0;
-    padding: 1.5rem;
-}
-
-.navLink:global(.active) {
-    color: var(--green);
 }
 
 /* sticks nav to bottom horizontally on mobile and has log button sit above it on the right */
@@ -40,14 +50,20 @@
         border-top: 1px solid var(--border);
     }
 
-    .logExerciseBtn {
+    .logWorkoutBtn {
         top: auto;
         bottom: calc(100% + 1.5rem);
         right: 1.5rem;
     }
 
     .navTrack,
-    .navBar {
+    .navBar,
+    .authControls {
         flex-direction: row;
+    }
+
+    .authControls {
+        margin: 0;
+        margin-left: auto;
     }
 }

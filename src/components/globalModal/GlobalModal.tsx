@@ -3,29 +3,38 @@ import style from "./GlobalModal.module.css";
 import { CloseContext } from "./CloseContext";
 import { useLocation, useNavigate } from "react-router";
 
+export type ModalButton = {
+    className: string;
+    content: ReactNode;
+};
+
 interface Props {
+    button?: ModalButton;
     children: ReactNode;
 }
 
-export default function GlobalModal({ children }: Props) {
+export default function GlobalModal({ button, children }: Props) {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const navigate = useNavigate();
     const location = useLocation();
 
-    // open property on dialog doesnt open as modal, so we do this
-    useEffect(() => {
-        if (dialogRef.current) {
-            dialogRef.current.showModal();
-        }
-    }, []);
-
-    const close = () => {
-        if (dialogRef.current === null) return;
-        dialogRef.current.close();
+    const open = () => {
+        if (dialogRef.current) dialogRef.current.showModal();
     };
 
+    const close = () => {
+        if (dialogRef.current) dialogRef.current.close();
+    };
+
+    useEffect(() => {
+        if (!button) {
+            open();
+        }
+    }, [button]);
+
     const handleClose = () => {
-        // goes to previous page if there was one, otherwise to root if tab was opened direct from link
+        if (button) return;
+        // if popup rendered open without button, goes to previous page if there was one, otherwise to root if tab was opened direct from url
         if (location.key !== "default") {
             navigate(-1);
         } else {
@@ -35,6 +44,11 @@ export default function GlobalModal({ children }: Props) {
 
     return (
         <>
+            {button && (
+                <button className={button.className} onClick={open}>
+                    {button.content}
+                </button>
+            )}
             <dialog
                 ref={dialogRef}
                 closedby="any"

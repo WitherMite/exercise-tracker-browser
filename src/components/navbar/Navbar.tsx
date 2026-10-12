@@ -1,7 +1,11 @@
-import { NavLink, useLocation } from "react-router";
+import { NavLink } from "react-router";
 import style from "./Navbar.module.css";
 import { useContext } from "react";
 import { AppContext } from "../../AppContext";
+import Login from "../../views/login/Login";
+import Register from "../../views/register/Register";
+import ConfirmLogout from "../confirmLogout/ConfirmLogout";
+import LogWorkoutForm from "../logWorkoutForm/LogWorkoutForm";
 
 const links = [
     {
@@ -35,38 +39,43 @@ export default function Navbar() {
     );
 
     const context = useContext(AppContext);
-    const location = useLocation();
 
-    // try extracting out global modals so they can be used as both route destinations and basic dialog elements attached to a button
     return (
         <nav className={style.navTrack}>
             <ul className={style.navBar}>{linkElements}</ul>
-            {context.isLoggedIn ? (
-                <>
-                    <NavLink className={style.logoutBtn} to="/logout">
-                        Logout
-                    </NavLink>
-                    <NavLink
-                        className={style.logExerciseBtn}
-                        to="/log-exercise"
-                    >
-                        + Log
-                    </NavLink>
-                </>
-            ) : (
-                <>
-                    <NavLink
-                        className={style.loginBtn}
-                        to={location.pathname + "?modal=login"}
-                        mask="/login"
-                    >
-                        Log in
-                    </NavLink>
-                    <NavLink className={style.registerBtn} to="/register">
-                        Create Account
-                    </NavLink>
-                </>
-            )}
+            <div className={style.authControls}>
+                {context.isLoggedIn ? (
+                    <>
+                        <ConfirmLogout
+                            button={{
+                                className: style.logoutBtn,
+                                content: "Logout",
+                            }}
+                        />
+                        <LogWorkoutForm
+                            button={{
+                                className: style.logWorkoutBtn,
+                                content: "+ Log",
+                            }}
+                        />
+                    </>
+                ) : (
+                    <>
+                        <Login
+                            button={{
+                                className: style.loginBtn,
+                                content: "Log in",
+                            }}
+                        />
+                        <Register
+                            button={{
+                                className: style.registerBtn,
+                                content: "Create Account",
+                            }}
+                        />
+                    </>
+                )}
+            </div>
         </nav>
     );
 }
