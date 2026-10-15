@@ -14,11 +14,11 @@ export const loginRoute: RouteObject = {
         const formData = await request.formData();
         const username = formData.get("username");
         const password = formData.get("password");
+        const rememberUser = formData.get("remember");
         if (typeof username !== "string" || typeof password !== "string") {
-            // should change this to be validated before it gets here later, and error if is wrong
             return;
         }
-        await loginUser({ username, password });
+        await loginUser({ username, password }, rememberUser);
         return redirect("/");
     },
 };

@@ -1,10 +1,21 @@
-import { Form, useNavigation } from "react-router";
+import { useContext } from "react";
+import { useFetcher } from "react-router";
+import { CloseContext } from "../../components/globalModal/CloseContext";
 
 export default function Register() {
-    const navigation = useNavigation();
+    const close = useContext(CloseContext);
+    const fetcher = useFetcher();
 
     return (
-        <Form action="/register" method="post">
+        <fetcher.Form action="/register" method="post">
+            <button
+                type="button"
+                onClick={() => {
+                    close();
+                }}
+            >
+                X
+            </button>
             <div className="form-field">
                 <label htmlFor="username">Username:</label>
                 <input type="text" id="username" name="username" />
@@ -21,11 +32,13 @@ export default function Register() {
                     name="confirm-password"
                 />
             </div>
+            <div className="form-field">
+                <input type="checkbox" id="remember" name="remember" />
+                <label htmlFor="remember">Remember Me</label>
+            </div>
             <button type="submit">
-                {navigation.formAction === "/register"
-                    ? "Creating..."
-                    : "Create Account"}
+                {fetcher.state !== "idle" ? "Creating..." : "Create Account"}
             </button>
-        </Form>
+        </fetcher.Form>
     );
 }

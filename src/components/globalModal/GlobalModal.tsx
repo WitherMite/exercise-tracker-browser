@@ -27,6 +27,10 @@ export default function GlobalModal({ button, children }: Props) {
     };
 
     useEffect(() => {
+        // close to prevent old dialogs from causing modal with button to render open on redirect
+        // (like login/logout modals in nav bar after submitting forms and redirecting to root)
+        // is probably a better way, but i couldnt find it
+        close();
         if (!button) {
             open();
         }

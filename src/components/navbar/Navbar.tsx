@@ -1,10 +1,10 @@
-import { NavLink } from "react-router";
 import style from "./Navbar.module.css";
+import { NavLink } from "react-router";
 import { useContext } from "react";
 import { AppContext } from "../../AppContext";
 import Login from "../../views/login/Login";
 import Register from "../../views/register/Register";
-import ConfirmLogout from "../confirmLogout/ConfirmLogout";
+import Logout from "../../views/logout/Logout";
 import LogWorkoutForm from "../logWorkoutForm/LogWorkoutForm";
 import GlobalModal from "../globalModal/GlobalModal";
 
@@ -53,7 +53,7 @@ export default function Navbar() {
                                 content: "Logout",
                             }}
                         >
-                            <ConfirmLogout />
+                            <Logout />
                         </GlobalModal>
                         <GlobalModal
                             button={{

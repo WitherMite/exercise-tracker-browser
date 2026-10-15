@@ -7,13 +7,13 @@ import Profile from "./views/profile/Profile";
 import { loginRoute } from "./views/login/loginRoute";
 import { registerRoute } from "./views/register/registerRoute";
 import { dashboardRoute } from "./views/dashboard/dashboardRoute";
+import { logoutRoute } from "./views/logout/logoutRoute";
 
 const router = createBrowserRouter([
     {
         element: <App />,
         loader: () => {
-            const isLoggedIn =
-                localStorage.getItem("username") && localStorage.getItem("jwt");
+            const isLoggedIn = !!localStorage.getItem("jwt");
             return { isLoggedIn };
         },
         errorElement: (
@@ -27,6 +27,7 @@ const router = createBrowserRouter([
                 element: <Landing />,
             },
             loginRoute,
+            logoutRoute,
             registerRoute,
             dashboardRoute,
             {

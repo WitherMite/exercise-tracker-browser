@@ -3,7 +3,10 @@ interface Credentials {
     password: string;
 }
 
-export default async function loginUser(credentials: Credentials) {
+export default async function loginUser(
+    credentials: Credentials,
+    rememberUser: FormDataEntryValue | null,
+) {
     const url = import.meta.env.VITE_API_URL + "auth";
     const response = await fetch(url, {
         method: "POST",
@@ -20,6 +23,8 @@ export default async function loginUser(credentials: Credentials) {
 
     if (token && typeof token === "string") {
         localStorage.setItem("jwt", token);
-        localStorage.setItem("username", credentials.username);
+        if (rememberUser) {
+            localStorage.setItem("username", credentials.username);
+        }
     }
 }
