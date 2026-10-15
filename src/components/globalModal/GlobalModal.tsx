@@ -4,7 +4,7 @@ import { CloseContext } from "./CloseContext";
 import { useLocation, useNavigate } from "react-router";
 
 export type ModalButton = {
-    className: string;
+    className: string | undefined;
     content: ReactNode;
 };
 

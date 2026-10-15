@@ -6,6 +6,7 @@ import Login from "../../views/login/Login";
 import Register from "../../views/register/Register";
 import ConfirmLogout from "../confirmLogout/ConfirmLogout";
 import LogWorkoutForm from "../logWorkoutForm/LogWorkoutForm";
+import GlobalModal from "../globalModal/GlobalModal";
 
 const links = [
     {
@@ -46,33 +47,41 @@ export default function Navbar() {
             <div className={style.authControls}>
                 {context.isLoggedIn ? (
                     <>
-                        <ConfirmLogout
+                        <GlobalModal
                             button={{
                                 className: style.logoutBtn,
                                 content: "Logout",
                             }}
-                        />
-                        <LogWorkoutForm
+                        >
+                            <ConfirmLogout />
+                        </GlobalModal>
+                        <GlobalModal
                             button={{
                                 className: style.logWorkoutBtn,
                                 content: "+ Log",
                             }}
-                        />
+                        >
+                            <LogWorkoutForm />
+                        </GlobalModal>
                     </>
                 ) : (
                     <>
-                        <Login
+                        <GlobalModal
                             button={{
                                 className: style.loginBtn,
                                 content: "Log in",
                             }}
-                        />
-                        <Register
+                        >
+                            <Login />
+                        </GlobalModal>
+                        <GlobalModal
                             button={{
                                 className: style.registerBtn,
                                 content: "Create Account",
                             }}
-                        />
+                        >
+                            <Register />
+                        </GlobalModal>
                     </>
                 )}
             </div>

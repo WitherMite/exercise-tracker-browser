@@ -1,9 +1,14 @@
 import type { RouteObject } from "react-router";
 import Register from "./Register";
+import GlobalModal from "../../components/globalModal/GlobalModal";
 
 export const registerRoute: RouteObject = {
     path: "/register",
-    element: <Register />,
+    element: (
+        <GlobalModal>
+            <Register />
+        </GlobalModal>
+    ),
     action: async ({ request }) => {
         const formData = await request.formData();
         const username = formData.get("username");
