@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { useFetcher } from "react-router";
 import { CloseContext } from "../../components/globalModal/CloseContext";
+import FormErrors from "../../components/formErrors/FormErrors";
 
 export default function Register() {
     const close = useContext(CloseContext);
     const fetcher = useFetcher();
+    const formErrors = fetcher.data;
 
     return (
         <fetcher.Form action="/register" method="post">
@@ -36,6 +38,12 @@ export default function Register() {
                 <input type="checkbox" id="remember" name="remember" />
                 <label htmlFor="remember">Remember Me</label>
             </div>
+            {formErrors && (
+                <FormErrors
+                    detail={formErrors.detail}
+                    errors={formErrors.errors}
+                />
+            )}
             <button type="submit">
                 {fetcher.state !== "idle" ? "Creating..." : "Create Account"}
             </button>

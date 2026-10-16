@@ -1,10 +1,12 @@
 import { useFetcher } from "react-router";
 import { CloseContext } from "../../components/globalModal/CloseContext";
 import { useContext } from "react";
+import FormErrors from "../../components/formErrors/FormErrors";
 
 export default function Login() {
     const close = useContext(CloseContext);
     const fetcher = useFetcher();
+    const formErrors = fetcher.data;
     const username = localStorage.getItem("username");
 
     return (
@@ -35,6 +37,12 @@ export default function Login() {
                 <input type="checkbox" id="remember" name="remember" />
                 <label htmlFor="remember">Remember Me</label>
             </div>
+            {formErrors && (
+                <FormErrors
+                    detail={formErrors.detail}
+                    errors={formErrors.errors}
+                />
+            )}
             <button type="submit">
                 {fetcher.state !== "idle" ? "Logging in..." : "Login"}
             </button>

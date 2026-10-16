@@ -1,3 +1,5 @@
+import type { ProblemDetail } from "./types/ProblemDetail";
+
 interface Credentials {
     username: string;
     password: string;
@@ -6,7 +8,7 @@ interface Credentials {
 export default async function loginUser(
     credentials: Credentials,
     rememberUser: FormDataEntryValue | null,
-) {
+): Promise<undefined | ProblemDetail> {
     const url = import.meta.env.VITE_API_URL + "auth";
     const response = await fetch(url, {
         method: "POST",
@@ -14,17 +16,22 @@ export default async function loginUser(
         body: JSON.stringify(credentials),
     });
 
-    if (!response.ok) {
-        throw new Error("Could not log in user - Status: " + response.status);
-    }
+    if (response.ok) {
+        const json = await response.json();
+        const token = json.accessToken;
 
-    const json = await response.json();
-    const token = json.accessToken;
-
-    if (token && typeof token === "string") {
-        localStorage.setItem("jwt", token);
-        if (rememberUser) {
-            localStorage.setItem("username", credentials.username);
+        if (token && typeof token === "string") {
+            localStorage.setItem("jwt", token);
+            if (rememberUser) {
+                localStorage.setItem("username", credentials.username);
+            }
         }
     }
+
+    if (response.status >= 400 && response.status < 500) {
+        const json = await response.json();
+        return json;
+    }
+
+    throw new Error("Could not log in user - Status: " + response.status);
 }

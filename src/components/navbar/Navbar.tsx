@@ -45,9 +45,11 @@ export default function Navbar() {
         <nav className={style.navTrack}>
             <ul className={style.navBar}>{linkElements}</ul>
             <div className={style.authControls}>
+                {/* modals get keys to prevent redirecting in thier form actions from keeping the new dialog element open */}
                 {context.isLoggedIn ? (
                     <>
                         <GlobalModal
+                            key={0}
                             button={{
                                 className: style.logoutBtn,
                                 content: "Logout",
@@ -56,6 +58,7 @@ export default function Navbar() {
                             <Logout />
                         </GlobalModal>
                         <GlobalModal
+                            key={1}
                             button={{
                                 className: style.logWorkoutBtn,
                                 content: "+ Log",
@@ -67,6 +70,7 @@ export default function Navbar() {
                 ) : (
                     <>
                         <GlobalModal
+                            key={2}
                             button={{
                                 className: style.loginBtn,
                                 content: "Log in",
@@ -75,6 +79,7 @@ export default function Navbar() {
                             <Login />
                         </GlobalModal>
                         <GlobalModal
+                            key={3}
                             button={{
                                 className: style.registerBtn,
                                 content: "Create Account",
