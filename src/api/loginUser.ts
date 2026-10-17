@@ -1,14 +1,9 @@
+import type { Credentials } from "./types/Credentials";
 import type { ProblemDetail } from "./types/ProblemDetail";
-
-interface Credentials {
-    username: string;
-    password: string;
-}
 
 export default async function loginUser(
     credentials: Credentials,
-    rememberUser: FormDataEntryValue | null,
-): Promise<undefined | ProblemDetail> {
+): Promise<ProblemDetail | undefined> {
     const url = import.meta.env.VITE_API_URL + "auth";
     const response = await fetch(url, {
         method: "POST",
@@ -22,9 +17,7 @@ export default async function loginUser(
 
         if (token && typeof token === "string") {
             localStorage.setItem("jwt", token);
-            if (rememberUser) {
-                localStorage.setItem("username", credentials.username);
-            }
+            localStorage.setItem("username", credentials.username);
         }
     }
 

@@ -33,10 +33,6 @@ export default function Login() {
                 <label htmlFor="password">Password:</label>
                 <input type="password" id="password" name="password" required />
             </div>
-            <div className="form-field">
-                <input type="checkbox" id="remember" name="remember" />
-                <label htmlFor="remember">Remember Me</label>
-            </div>
             {formErrors && (
                 <FormErrors
                     detail={formErrors.detail}

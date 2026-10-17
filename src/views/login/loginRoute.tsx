@@ -15,15 +15,11 @@ export const loginRoute: RouteObject = {
         const formData = await request.formData();
         const username = formData.get("username");
         const password = formData.get("password");
-        const rememberUser = formData.get("remember");
         if (typeof username !== "string" || typeof password !== "string") {
             return;
         }
         try {
-            const problem = await loginUser(
-                { username, password },
-                rememberUser,
-            );
+            const problem = await loginUser({ username, password });
             return problem ? problem : redirect("/");
         } catch (e) {
             if (e instanceof Error) {
