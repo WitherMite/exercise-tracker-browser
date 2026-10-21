@@ -1,10 +1,16 @@
-import { redirect } from "react-router";
+import { isUser, type User } from "./types/User";
 
-export default async function getUserData(): Promise<{ displayname: string }> {
+export default async function getUserData(): Promise<User | undefined> {
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("jwt");
     if (!username || !token) {
-        throw redirect("/login");
+        return;
+    }
+    // user shouldnt change very often, unless we do it ourselves, so can cache data to session instead of grabbing it on every refresh
+    const userJson = sessionStorage.getItem("user");
+    const user = userJson && JSON.parse(userJson);
+    if (user && isUser(user)) {
+        return user;
     }
 
     const url = import.meta.env.VITE_API_URL + `users/${username}`;
@@ -12,18 +18,17 @@ export default async function getUserData(): Promise<{ displayname: string }> {
         headers: { Authorization: `Bearer ${token}` },
     });
 
-    if (response.status === 403) {
-        throw redirect("/login");
-    } else if (!response.ok) {
+    if (!response.ok) {
         throw new Error(`Error fetching user, status: ${response.status}`);
     }
 
     const data = await response.json();
-    if (typeof data.displayname !== "string") {
-        throw new Error("Error fetching user, unexpected response", {
-            cause: data,
-        });
+    if (isUser(data)) {
+        sessionStorage.setItem("user", JSON.stringify(data));
+        return data;
     }
 
-    return { displayname: data.displayname };
+    throw new Error("Error fetching user, unexpected response", {
+        cause: data,
+    });
 }

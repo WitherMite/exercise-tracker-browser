@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router";
 import App from "./App";
 import GlobalErrorBoundary from "./errors/GlobalErrorBoundary";
-import Exercises from "./views/exercises/Exercises";
 import Landing from "./views/landing/Landing";
 import Profile from "./views/profile/Profile";
 import { loginRoute } from "./views/login/loginRoute";
 import { registerRoute } from "./views/register/registerRoute";
 import { dashboardRoute } from "./views/dashboard/dashboardRoute";
 import { logoutRoute } from "./views/logout/logoutRoute";
+import { exercisesRoute } from "./views/exercises/exercisesRoute";
 
 const router = createBrowserRouter([
     {
@@ -34,10 +34,7 @@ const router = createBrowserRouter([
                 path: "/profile",
                 element: <Profile />,
             },
-            {
-                path: "/exercises",
-                element: <Exercises />,
-            },
+            exercisesRoute,
         ],
     },
 ]);

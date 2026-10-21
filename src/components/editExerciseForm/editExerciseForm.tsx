@@ -1,0 +1,22 @@
+import style from "./editExerciseForm.module.css";
+import { useContext } from "react";
+import { CloseContext } from "../globalModal/CloseContext";
+
+export default function LogWorkoutForm() {
+    const close = useContext(CloseContext);
+    return (
+        <>
+            <div className={style.formHeader}>
+                <h1>New Exercise</h1>
+                <button
+                    type="button"
+                    onClick={close}
+                    className={style.closeBtn}
+                >
+                    x
+                </button>
+            </div>
+            <form action="">{"form here"}</form>
+        </>
+    );
+}

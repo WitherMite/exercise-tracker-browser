@@ -1,11 +1,24 @@
 .searchHeader,
-.exerciseCount {
+.infoTrack {
     margin-bottom: 1rem;
+}
+
+.infoTrack {
+    display: flex;
+    align-items: end;
+    gap: 1rem;
 }
 
 .exerciseCount {
     font-family: var(--font-mono);
     color: var(--font-color-muted);
+}
+
+/* todo: button needs to look more interactable */
+.newExerciseBtn {
+    margin-left: auto;
+    position: fixed;
+    right: 1.5rem;
 }
 
 .cardGrid {

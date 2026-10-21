@@ -2,6 +2,10 @@ import type { ReactNode } from "react";
 import Card from "../../components/card/Card";
 import SearchHeader from "../../components/searchHeader/SearchHeader";
 import style from "./Exercises.module.css";
+import { useLoaderData } from "react-router";
+import GlobalModal from "../../components/globalModal/GlobalModal";
+import EditExerciseForm from "../../components/editExerciseForm/editExerciseForm";
+import type { exercisesLoaderData } from "./exercisesRoute";
 
 const categories = [
     { id: 0, name: "Any" },
@@ -10,6 +14,8 @@ const categories = [
 ];
 
 export default function Exercises() {
+    const { user } = useLoaderData<exercisesLoaderData>();
+    const canManageExercises = user?.role === "admin";
     return (
         <>
             <SearchHeader
@@ -18,7 +24,19 @@ export default function Exercises() {
                 className={style.searchHeader}
             />
             <main>
-                <p className={style.exerciseCount}>24 Exercises</p>
+                <div className={style.infoTrack}>
+                    <p className={style.exerciseCount}>24 Exercises</p>
+                    {canManageExercises && (
+                        <GlobalModal
+                            button={{
+                                className: style.newExerciseBtn,
+                                content: "New Exercise",
+                            }}
+                        >
+                            <EditExerciseForm />
+                        </GlobalModal>
+                    )}
+                </div>
                 <div className={style.cardGrid}>{placeholderCards(24)}</div>
             </main>
         </>
