@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useFetcher } from "react-router";
 import { CloseContext } from "../../components/globalModal/CloseContext";
 import FormErrors from "../../components/formErrors/FormErrors";
+import FormField from "../../components/formField/FormField";
 
 // todo: add a weight field that automatically converts units to kg if needed
 export default function Register() {
@@ -19,42 +20,40 @@ export default function Register() {
             >
                 X
             </button>
-            <div className="form-field">
-                <label htmlFor="username">Username:</label>
-                <input type="text" id="username" name="username" required />
-            </div>
-            <div className="form-field">
-                <label htmlFor="displayname">Displayname:</label>
-                <input
-                    type="text"
-                    id="displayname"
-                    name="displayname"
-                    required
-                />
-            </div>
-            <div className="form-field">
-                <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="password" required />
-            </div>
-            <div className="form-field">
-                <label htmlFor="confirm-password">Confirm Password:</label>
-                <input
-                    type="password"
-                    id="confirm-password"
-                    name="confirm-password"
-                    required
-                />
-            </div>
-            <div className="form-field">
-                <input
-                    type="checkbox"
-                    id="are-workouts-public"
-                    name="are-workouts-public"
-                />
-                <label htmlFor="are-workouts-public">
-                    Allow other users to see my workouts
-                </label>
-            </div>
+            <FormField
+                label="Username:"
+                inputId="username"
+                name="username"
+                type="text"
+                required
+            />
+            <FormField
+                label="Displayname:"
+                inputId="displayname"
+                name="displayname"
+                type="text"
+                required
+            />
+            <FormField
+                label="Password:"
+                inputId="password"
+                name="password"
+                type="password"
+                required
+            />
+            <FormField
+                label="Confirm Password:"
+                inputId="confirm-password"
+                name="confirm-password"
+                type="password"
+                required
+            />
+            <FormField
+                label="Allow other users to see my workouts"
+                inputId="are-workouts-public"
+                name="are-workouts-public"
+                type="checkbox"
+            />
             {formErrors && (
                 <FormErrors
                     detail={formErrors.detail}

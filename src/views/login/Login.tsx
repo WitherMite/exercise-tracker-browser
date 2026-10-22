@@ -2,6 +2,7 @@ import { useFetcher } from "react-router";
 import { CloseContext } from "../../components/globalModal/CloseContext";
 import { useContext } from "react";
 import FormErrors from "../../components/formErrors/FormErrors";
+import FormField from "../../components/formField/FormField";
 
 export default function Login() {
     const close = useContext(CloseContext);
@@ -19,20 +20,21 @@ export default function Login() {
             >
                 X
             </button>
-            <div className="form-field">
-                <label htmlFor="username">Username:</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    defaultValue={username || ""}
-                    required
-                />
-            </div>
-            <div className="form-field">
-                <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="password" required />
-            </div>
+            <FormField
+                label="Username:"
+                inputId="username"
+                name="username"
+                type="text"
+                defaultValue={username || ""}
+                required
+            />
+            <FormField
+                label="Password:"
+                inputId="password"
+                name="password"
+                type="password"
+                required
+            />
             {formErrors && (
                 <FormErrors
                     detail={formErrors.detail}
