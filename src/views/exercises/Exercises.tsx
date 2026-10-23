@@ -7,15 +7,13 @@ import GlobalModal from "../../components/globalModal/GlobalModal";
 import EditExerciseForm from "../../components/editExerciseForm/editExerciseForm";
 import type { exercisesLoaderData } from "./exercisesRoute";
 
-const categories = [
-    { id: 0, name: "Any" },
-    { id: 1, name: "Running" },
-    { id: 2, name: "Weightlifting" },
-];
-
 export default function Exercises() {
-    const { user } = useLoaderData<exercisesLoaderData>();
+    const { user, exerciseTypes } = useLoaderData<exercisesLoaderData>();
     const canManageExercises = user?.role === "admin";
+    const categories = exerciseTypes?.map((type) => {
+        return { id: type.name, ...type };
+    });
+
     return (
         <>
             <SearchHeader
@@ -33,7 +31,14 @@ export default function Exercises() {
                                 content: "New Exercise",
                             }}
                         >
-                            <EditExerciseForm />
+                            <EditExerciseForm
+                                exerciseTypes={exerciseTypes?.map((type) => {
+                                    return {
+                                        label: type.name,
+                                        value: type.name,
+                                    };
+                                })}
+                            />
                         </GlobalModal>
                     )}
                 </div>

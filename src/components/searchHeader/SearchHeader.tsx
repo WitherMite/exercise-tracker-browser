@@ -3,8 +3,8 @@ import style from "./SearchHeader.module.css";
 interface Props {
     className: string;
     label: string;
-    categories: {
-        id: number;
+    categories?: {
+        id: number | string;
         name: string;
     }[];
 }
@@ -24,7 +24,7 @@ export default function SearchHeader({ className, label, categories }: Props) {
                     />
                 </div>
                 <div className={style.categoryList}>
-                    {categories.map((category) => (
+                    {categories?.map((category) => (
                         <button
                             type="button"
                             key={category.id}

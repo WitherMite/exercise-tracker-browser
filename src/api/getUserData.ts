@@ -14,21 +14,26 @@ export default async function getUserData(): Promise<User | undefined> {
     }
 
     const url = import.meta.env.VITE_API_URL + `users/${username}`;
-    const response = await fetch(url, {
-        headers: { Authorization: `Bearer ${token}` },
-    });
+    try {
+        const response = await fetch(url, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
 
-    if (!response.ok) {
-        throw new Error(`Error fetching user, status: ${response.status}`);
+        if (!response.ok) {
+            throw new Error(`Error fetching user, status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (isUser(data)) {
+            sessionStorage.setItem("user", JSON.stringify(data));
+            return data;
+        }
+
+        throw new Error("Error fetching user, unexpected response", {
+            cause: data,
+        });
+    } catch (e) {
+        console.error(e);
+        return;
     }
-
-    const data = await response.json();
-    if (isUser(data)) {
-        sessionStorage.setItem("user", JSON.stringify(data));
-        return data;
-    }
-
-    throw new Error("Error fetching user, unexpected response", {
-        cause: data,
-    });
 }

@@ -22,7 +22,7 @@ export const registerRoute: RouteObject = {
             displayname: formData.get("displayname"),
             areWorkoutsPublic: !!formData.get("are-workouts-public"),
             weight:
-                weightField && typeof weightField === "string"
+                typeof weightField === "string"
                     ? Number.parseFloat(weightField)
                     : undefined,
         };
