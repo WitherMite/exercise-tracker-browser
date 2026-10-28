@@ -3,7 +3,8 @@
     margin-bottom: 1rem;
 }
 
-.infoTrack {
+.infoTrack,
+.formBtnWrapper {
     display: flex;
     align-items: end;
     gap: 1rem;
@@ -12,13 +13,12 @@
 .exerciseCount {
     font-family: var(--font-mono);
     color: var(--font-color-muted);
+    padding-right: 0.33rem;
 }
 
-/* todo: button needs to look more interactable */
-.newExerciseBtn {
-    margin-left: auto;
-    position: fixed;
-    right: 1.5rem;
+/* todo: buttons need to look more interactable */
+.formBtnWrapper {
+    margin-right: auto;
 }
 
 .cardGrid {

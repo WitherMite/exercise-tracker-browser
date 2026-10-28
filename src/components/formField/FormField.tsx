@@ -1,5 +1,10 @@
 import type { HTMLInputTypeAttribute, ReactNode } from "react";
 
+export interface SelectOpt {
+    label: ReactNode;
+    value: string;
+}
+
 interface Props {
     label: ReactNode;
     type: HTMLInputTypeAttribute | "textarea" | "select";
@@ -9,15 +14,15 @@ interface Props {
     required?: boolean;
     wrapperClasses?: string;
     selectMultiple?: boolean;
-    selectOpts?: readonly {
-        label: ReactNode;
-        value: string;
-    }[];
+    selectOpts?: readonly SelectOpt[];
 }
 
 export default function FormField(props: Props) {
     const labelIsAfterInput = props.type === "checkbox";
-    const classes = "form-field " + props.wrapperClasses;
+    // undefined gets coerced to the string "undefined" here if concatenated like this, so we check instead
+    const classes = props.wrapperClasses
+        ? "form-field " + props.wrapperClasses
+        : "form-field";
 
     return (
         <div className={classes}>
@@ -50,14 +55,11 @@ function chooseInputElement(props: Props) {
                     name={props.name}
                     multiple={props.selectMultiple}
                     required={props.required}
+                    defaultValue={props.defaultValue}
                 >
                     {props.selectOpts?.map((option) => {
                         return (
-                            <option
-                                key={option.value}
-                                value={option.value}
-                                selected={option.value === props.defaultValue}
-                            >
+                            <option key={option.value} value={option.value}>
                                 {option.label}
                             </option>
                         );

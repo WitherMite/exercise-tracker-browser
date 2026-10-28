@@ -1,20 +1,36 @@
 import style from "./editExerciseForm.module.css";
-import { useContext, useState, type ReactNode } from "react";
+import { useContext, useState } from "react";
 import { CloseContext } from "../globalModal/CloseContext";
 import { useFetcher } from "react-router";
-import FormField from "../formField/FormField";
+import FormField, { type SelectOpt } from "../formField/FormField";
+import EditExerciseTypeForm from "../editExerciseTypeForm/EditExerciseTypeForm";
+import FormErrors from "../formErrors/FormErrors";
+import type { exercisesActionData } from "../../views/exercises/exercisesRoute";
+import { isProblemDetail } from "../../api/types/ProblemDetail";
 
 interface Props {
-    exerciseTypes?: readonly {
-        label: ReactNode;
-        value: string;
-    }[];
+    validSelectValues?: {
+        exerciseTypes?: readonly SelectOpt[];
+        countTypes?: readonly SelectOpt[];
+        loadTypes?: readonly SelectOpt[];
+        workTimeTypes?: readonly SelectOpt[];
+        restTypes?: readonly SelectOpt[];
+    };
 }
 
-export default function EditExerciseForm({ exerciseTypes }: Props) {
-    const [isEditingType, setIsEditingType] = useState<boolean>(false);
+export default function EditExerciseForm({ validSelectValues }: Props) {
     const close = useContext(CloseContext);
-    const fetcher = useFetcher();
+    const fetcher = useFetcher<exercisesActionData>();
+    const errors = fetcher.data;
+
+    // guard statement to check if one problem detail, or one for each part of the form
+    const [exerciseErrors, exerciseTypeErrors] = isProblemDetail(errors)
+        ? [errors]
+        : [errors?.exercise, errors?.exerciseType];
+
+    // false by default unless there were errors in the expanded form, so will render open
+    const [isEditingType, setIsEditingType] =
+        useState<boolean>(!!exerciseTypeErrors);
 
     return (
         <>
@@ -38,17 +54,15 @@ export default function EditExerciseForm({ exerciseTypes }: Props) {
                 />
                 <FormField
                     label="Description:"
-                    inputId="name"
-                    name="name"
+                    inputId="description"
+                    name="description"
                     type="textarea"
                 />
                 {isEditingType ? (
-                    <FormField
-                        label="Exercise Type Name:"
-                        inputId="exercise-type-name"
-                        name="exercise-type-name"
-                        type="text"
-                        required
+                    <EditExerciseTypeForm
+                        validSelectValues={validSelectValues}
+                        formErrors={exerciseTypeErrors}
+                        asOnlyControls
                     />
                 ) : (
                     <FormField
@@ -56,8 +70,14 @@ export default function EditExerciseForm({ exerciseTypes }: Props) {
                         inputId="exercise-type-name"
                         name="exercise-type-name"
                         type="select"
-                        selectOpts={exerciseTypes}
+                        selectOpts={validSelectValues?.exerciseTypes}
                         required
+                    />
+                )}
+                {exerciseErrors && (
+                    <FormErrors
+                        detail={exerciseErrors?.detail}
+                        errors={exerciseErrors.errors}
                     />
                 )}
 

@@ -23,7 +23,11 @@ export default async function registerUser(
         });
     }
 
-    if (response.status >= 400 && response.status < 500) {
+    if (
+        response.status >= 400 &&
+        response.status < 500 &&
+        response.headers.get("content-type")?.includes("application/json")
+    ) {
         const json = await response.json();
         if (isProblemDetail(json)) return json;
         if (response.status === 409) {

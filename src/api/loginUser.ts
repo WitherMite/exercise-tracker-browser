@@ -19,9 +19,14 @@ export default async function loginUser(
             localStorage.setItem("jwt", token);
             localStorage.setItem("username", credentials.username);
         }
+        return;
     }
 
-    if (response.status >= 400 && response.status < 500) {
+    if (
+        response.status >= 400 &&
+        response.status < 500 &&
+        response.headers.get("content-type")?.includes("application/json")
+    ) {
         const json = await response.json();
         return json;
     }

@@ -1,5 +1,6 @@
 #root {
-    min-height: 300svh;
+    /* todo: set to 100 svh when not testing how scroll affects layout */
+    min-height: 150svh;
     display: flex;
 }
 
