@@ -1,4 +1,4 @@
-import { isUser, type User } from "./types/User";
+import { isUser, type User } from "../types/User";
 
 export default async function getUserData(): Promise<User | undefined> {
     const username = localStorage.getItem("username");

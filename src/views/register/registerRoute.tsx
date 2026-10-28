@@ -2,8 +2,8 @@ import type { RouteObject } from "react-router";
 import Register from "./Register";
 import GlobalModal from "../../components/globalModal/GlobalModal";
 import type { ProblemDetail } from "../../api/types/ProblemDetail";
-import registerUser from "../../api/registerUser";
 import { isUser } from "../../api/types/User";
+import { api } from "../../api/exerciseTrackerApi";
 
 export const registerRoute: RouteObject = {
     path: "/register",
@@ -35,7 +35,7 @@ export const registerRoute: RouteObject = {
 
         if (isUser(user)) {
             try {
-                return await registerUser(user);
+                return await api.user.register(user);
             } catch (e) {
                 if (e instanceof Error)
                     return { detail: e.message } satisfies ProblemDetail;

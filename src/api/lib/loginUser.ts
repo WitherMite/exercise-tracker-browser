@@ -1,5 +1,5 @@
-import type { Credentials } from "./types/Credentials";
-import type { ProblemDetail } from "./types/ProblemDetail";
+import type { Credentials } from "../types/Credentials";
+import type { ProblemDetail } from "../types/ProblemDetail";
 
 export default async function loginUser(
     credentials: Credentials,

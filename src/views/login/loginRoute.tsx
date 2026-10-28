@@ -1,8 +1,8 @@
 import { redirect, type RouteObject } from "react-router";
-import loginUser from "../../api/loginUser";
 import Login from "./Login";
 import GlobalModal from "../../components/globalModal/GlobalModal";
 import type { ProblemDetail } from "../../api/types/ProblemDetail";
+import { api } from "../../api/exerciseTrackerApi";
 
 export const loginRoute: RouteObject = {
     path: "/login",
@@ -19,7 +19,7 @@ export const loginRoute: RouteObject = {
             return;
         }
         try {
-            const problem = await loginUser({ username, password });
+            const problem = await api.user.login({ username, password });
             return problem ? problem : redirect("/");
         } catch (e) {
             if (e instanceof Error) {

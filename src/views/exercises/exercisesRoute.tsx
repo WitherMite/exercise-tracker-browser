@@ -1,14 +1,11 @@
 import type { RouteObject } from "react-router";
-import getUserData from "../../api/getUserData";
 import Exercises from "./Exercises";
 import type { User } from "../../api/types/User";
-import getExerciseTypes from "../../api/getExerciseTypes";
 import type { ReactNode } from "react";
 import { isExerciseType } from "../../api/types/ExerciseType";
 import { isExercise } from "../../api/types/Exercise";
 import type { ProblemDetail } from "../../api/types/ProblemDetail";
-import createExerciseType from "../../api/createExerciseType";
-import createExercise from "../../api/createExercise";
+import { api } from "../../api/exerciseTrackerApi";
 
 interface FormSelectOption {
     name: string;
@@ -39,9 +36,9 @@ export const exercisesRoute: RouteObject = {
     loader: async (): Promise<exercisesLoaderData> => {
         // todo: move hardcoded values to some config for easier changes
         return {
-            user: await getUserData(),
+            user: await api.user.getCurrent(),
             formSelectOptions: {
-                exerciseTypes: await getExerciseTypes(),
+                exerciseTypes: await api.exercise.type.getMany(),
                 countTypes: [
                     { name: "single" },
                     { name: "lap" },
@@ -78,13 +75,13 @@ export const exercisesRoute: RouteObject = {
         try {
             const problems: Problems = {};
             if (isExerciseType(exercise.exerciseType)) {
-                problems.exerciseType = await createExerciseType(
+                problems.exerciseType = await api.exercise.type.create(
                     exercise.exerciseType,
                 );
             }
 
             if (isExercise(exercise)) {
-                problems.exercise = await createExercise(exercise);
+                problems.exercise = await api.exercise.create(exercise);
             }
             return problems;
         } catch (e) {

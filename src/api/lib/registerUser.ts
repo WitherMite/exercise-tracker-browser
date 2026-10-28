@@ -1,7 +1,7 @@
 import loginUser from "./loginUser";
-import { isCredentials } from "./types/Credentials";
-import { isProblemDetail, type ProblemDetail } from "./types/ProblemDetail";
-import type { User } from "./types/User";
+import { isCredentials } from "../types/Credentials";
+import { isProblemDetail, type ProblemDetail } from "../types/ProblemDetail";
+import type { User } from "../types/User";
 
 export default async function registerUser(
     user: User,

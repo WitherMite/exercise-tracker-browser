@@ -1,4 +1,4 @@
-import { isExerciseType } from "./types/ExerciseType";
+import { isExerciseType } from "../types/ExerciseType";
 
 export default async function getExerciseTypes() {
     const url = import.meta.env.VITE_API_URL + `exercise-types`;
@@ -7,7 +7,7 @@ export default async function getExerciseTypes() {
 
         if (!response.ok) {
             throw new Error(
-                `Error fetching exerciseTypes, status: ${response.status}`,
+                `Error fetching exercise types, status: ${response.status}`,
             );
         }
 
@@ -16,7 +16,7 @@ export default async function getExerciseTypes() {
             return data;
         }
 
-        throw new Error("Error fetching exerciseTypes, unexpected response", {
+        throw new Error("Error fetching exercise types, unexpected response", {
             cause: data,
         });
     } catch (e) {

@@ -1,7 +1,7 @@
 import { type RouteObject } from "react-router";
 import GlobalModal from "../../components/globalModal/GlobalModal";
 import Logout from "./Logout";
-import logoutUser from "../../api/logoutUser";
+import { api } from "../../api/exerciseTrackerApi";
 
 export const logoutRoute: RouteObject = {
     path: "/logout",
@@ -11,6 +11,6 @@ export const logoutRoute: RouteObject = {
         </GlobalModal>
     ),
     action: async () => {
-        return await logoutUser();
+        return await api.user.logout();
     },
 };

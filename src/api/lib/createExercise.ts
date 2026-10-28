@@ -1,5 +1,5 @@
-import type { Exercise } from "./types/Exercise";
-import { isProblemDetail, type ProblemDetail } from "./types/ProblemDetail";
+import type { Exercise } from "../types/Exercise";
+import { isProblemDetail, type ProblemDetail } from "../types/ProblemDetail";
 
 export default async function createExercise(
     exercise: Exercise,
