@@ -7,5 +7,9 @@ interface Props {
 }
 
 export default function Card({ className, children }: Props) {
-    return <div className={`${style.card} ${className}`}>{children}</div>;
+    return (
+        <div className={`${style.card} ${className ? className : ""}`}>
+            {children}
+        </div>
+    );
 }
