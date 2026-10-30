@@ -1,5 +1,6 @@
-.infoTrack {
-    margin-bottom: 1rem;
+.infoTrack,
+.cardGrid {
+    margin-top: 1rem;
 }
 
 .infoTrack,

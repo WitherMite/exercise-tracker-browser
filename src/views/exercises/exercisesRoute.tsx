@@ -3,7 +3,7 @@ import Exercises from "./Exercises";
 import type { User } from "../../api/types/User";
 import type { ReactNode } from "react";
 import { isExerciseType } from "../../api/types/ExerciseType";
-import { isExercise } from "../../api/types/Exercise";
+import { isExercise, type Exercise } from "../../api/types/Exercise";
 import type { ProblemDetail } from "../../api/types/ProblemDetail";
 import { api } from "../../api/exerciseTrackerApi";
 
@@ -21,6 +21,7 @@ export type exercisesActionData = Problems | ProblemDetail | undefined;
 
 export interface exercisesLoaderData {
     user?: User;
+    exercises?: readonly Exercise[];
     formSelectOptions?: {
         exerciseTypes?: FormSelectOption[];
         countTypes?: FormSelectOption[];
@@ -37,6 +38,7 @@ export const exercisesRoute: RouteObject = {
         // todo: move hardcoded values to some config for easier changes
         return {
             user: await api.user.getCurrent(),
+            exercises: await api.exercise.getMany(),
             formSelectOptions: {
                 exerciseTypes: await api.exercise.type.getMany(),
                 countTypes: [

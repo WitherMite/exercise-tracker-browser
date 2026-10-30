@@ -1,5 +1,6 @@
 import createExercise from "./lib/createExercise";
 import createExerciseType from "./lib/createExerciseType";
+import getExercises from "./lib/getExercises";
 import getExerciseTypes from "./lib/getExerciseTypes";
 import getUserData from "./lib/getUserData";
 import loginUser from "./lib/loginUser";
@@ -14,7 +15,7 @@ export const api = {
         logout: logoutUser,
     },
     exercise: {
-        getMany: () => {},
+        getMany: getExercises,
         create: createExercise,
         type: {
             getMany: getExerciseTypes,

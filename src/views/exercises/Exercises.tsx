@@ -10,7 +10,8 @@ import type { SelectOpt } from "../../components/formField/FormField";
 import EditExerciseTypeForm from "../../components/editExerciseTypeForm/EditExerciseTypeForm";
 
 export default function Exercises() {
-    const { user, formSelectOptions } = useLoaderData<exercisesLoaderData>();
+    const { user, exercises, formSelectOptions } =
+        useLoaderData<exercisesLoaderData>();
     const canManageExercises = user?.role === "admin";
     // todo: should get data from loader in correct shape to be immediately usable instead
     const categories = formSelectOptions?.exerciseTypes?.map((type) => {
@@ -58,9 +59,20 @@ export default function Exercises() {
                             </GlobalModal>
                         </div>
                     )}
-                    <p className={style.exerciseCount}>24 Exercises</p>
+                    <p className={style.exerciseCount}>
+                        {exercises?.length || "0"}
+                        {exercises?.length !== 1 ? " Exercises" : " Exercise"}
+                    </p>
                 </div>
-                <div className={style.cardGrid}>{placeholderCards(24)}</div>
+                <div className={style.cardGrid}>
+                    {exercises?.map((exercise) => {
+                        return (
+                            <Card key={exercise.name}>
+                                <h2>{exercise.name}</h2>
+                            </Card>
+                        );
+                    })}
+                </div>
             </main>
         </>
     );
@@ -74,16 +86,4 @@ function selectOptFactory(type: {
         label: type.label || type.name,
         value: type.name,
     };
-}
-
-function placeholderCards(count: number) {
-    const cards: ReactNode[] = [];
-    for (let i = 0; i < count; i++) {
-        cards.push(
-            <Card key={i}>
-                <div>{i + 1}</div>
-            </Card>,
-        );
-    }
-    return cards;
 }

@@ -4,9 +4,7 @@ import { isProblemDetail, type ProblemDetail } from "../types/ProblemDetail";
 export default async function createExercise(
     exercise: Exercise,
 ): Promise<ProblemDetail | undefined> {
-    const url =
-        import.meta.env.VITE_API_URL +
-        `exercise-types/${exercise.exerciseType.name}/exercises`;
+    const url = import.meta.env.VITE_API_URL + "exercises";
 
     const token = localStorage.getItem("jwt");
     const response = await fetch(url, {
