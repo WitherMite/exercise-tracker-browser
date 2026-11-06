@@ -1,10 +1,11 @@
-import type { ExerciseType } from "../types/ExerciseType";
-import { isProblemDetail, type ProblemDetail } from "../types/ProblemDetail";
+import { isProblemDetail, type ProblemDetail } from "../../types/ProblemDetail";
 
-export default async function createExerciseType(
-    exerciseType: ExerciseType,
+// todo: return the resource on successful post, but is not needed yet
+export default async function postResource<Type>(
+    resourcePath: string,
+    resource: Type,
 ): Promise<ProblemDetail | undefined> {
-    const url = import.meta.env.VITE_API_URL + "exercise-types";
+    const url = import.meta.env.VITE_API_URL + resourcePath;
 
     const token = localStorage.getItem("jwt");
     const response = await fetch(url, {
@@ -13,7 +14,7 @@ export default async function createExerciseType(
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(exerciseType),
+        body: JSON.stringify(resource),
     });
 
     if (response.ok) {
@@ -30,6 +31,6 @@ export default async function createExerciseType(
     }
 
     throw new Error(
-        "Could not create exercise type - Status: " + response.status,
+        `Could not create ${resourcePath} - Status: ` + response.status,
     );
 }
